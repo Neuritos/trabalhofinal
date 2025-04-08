@@ -1,0 +1,22 @@
+CREATE TABLE partidos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL,
+  sigla TEXT NOT NULL,
+  numero INTEGER NOT NULL UNIQUE
+);
+
+CREATE TABLE candidatos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  cpf TEXT NOT NULL UNIQUE,
+  titulo_eleitor TEXT NOT NULL UNIQUE,
+  nome TEXT NOT NULL,
+  endereco TEXT NOT NULL,
+  numero TEXT NOT NULL,
+  bairro TEXT NOT NULL,
+  cidade TEXT NOT NULL,
+  uf TEXT NOT NULL,
+  cep TEXT NOT NULL,
+  renda_mensal REAL NOT NULL,
+  partido_id INTEGER NOT NULL,
+  FOREIGN KEY (partido_id) REFERENCES partidos(id)
+);

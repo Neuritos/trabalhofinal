@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu - Eleições 2026</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 50px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+    }
+
+    a {
+      display: block;
+      margin: 15px auto;
+      padding: 15px;
+      width: 250px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    a:hover {
+      background: #0056b3;
+    }
+
+    button {
+      margin-top: 40px;
+      background: #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <h1>Menu Principal</h1>
+  <a href="partidos.html">Cadastro de Partidos</a>
+  <a href="candidatos.html">Cadastro de Candidatos</a>
+
+  <button onclick="logout()">Sair</button>
+
+  <script>
+    async function logout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = 'index.html';
+    }
+
+    // Protege o acesso
+    fetch('/api/auth/check')
+      .then(res => {
+        if (!res.ok) throw new Error();
+      })
+      .catch(() => window.location.href = 'index.html');
+  </script>
+</body>
+</html>

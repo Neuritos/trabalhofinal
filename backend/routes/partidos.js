@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-// Middleware para verificar login
+
 function verificarLogin(req, res, next) {
   if (req.session.usuario) return next();
   return res.status(401).json({ error: 'Não autorizado' });
 }
 
-// Listar todos os partidos
+
 router.get('/', verificarLogin, (req, res) => {
   db.all('SELECT * FROM partidos', (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -16,7 +16,6 @@ router.get('/', verificarLogin, (req, res) => {
   });
 });
 
-// Cadastrar novo partido
 router.post('/', verificarLogin, (req, res) => {
   const { nome, sigla, numero } = req.body;
   if (!nome || !sigla || !numero) {
@@ -30,7 +29,7 @@ router.post('/', verificarLogin, (req, res) => {
   });
 });
 
-// Editar partido
+
 router.put('/:id', verificarLogin, (req, res) => {
   const { nome, sigla, numero } = req.body;
   const { id } = req.params;
@@ -42,7 +41,7 @@ router.put('/:id', verificarLogin, (req, res) => {
   });
 });
 
-// Deletar partido
+
 router.delete('/:id', verificarLogin, (req, res) => {
   const { id } = req.params;
 

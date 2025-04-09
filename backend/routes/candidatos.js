@@ -7,7 +7,7 @@ function verificarLogin(req, res, next) {
   return res.status(401).json({ error: 'Não autorizado' });
 }
 
-// Listar candidatos
+
 router.get('/', verificarLogin, (req, res) => {
   db.all(`
     SELECT candidatos.*, partidos.nome AS partido_nome
@@ -19,7 +19,7 @@ router.get('/', verificarLogin, (req, res) => {
   });
 });
 
-// Cadastrar candidato
+
 router.post('/', verificarLogin, (req, res) => {
   const {
     cpf, titulo_eleitor, nome, endereco, numero,
@@ -47,7 +47,7 @@ router.post('/', verificarLogin, (req, res) => {
   });
 });
 
-// Editar candidato
+
 router.put('/:id', verificarLogin, (req, res) => {
   const {
     cpf, titulo_eleitor, nome, endereco, numero,
@@ -70,7 +70,7 @@ router.put('/:id', verificarLogin, (req, res) => {
   });
 });
 
-// Deletar candidato
+
 router.delete('/:id', verificarLogin, (req, res) => {
   const { id } = req.params;
 

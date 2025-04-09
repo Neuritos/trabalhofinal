@@ -92,7 +92,7 @@
       const id = document.getElementById('id').value;
       if (!id) delete dados.id;
 
-      console.log("Dados enviados:", dados); // debug
+      console.log("Dados enviados:", dados); 
 
       const res = await fetch(id ? `/api/candidatos/${id}` : '/api/candidatos', {
         method: id ? 'PUT' : 'POST',
